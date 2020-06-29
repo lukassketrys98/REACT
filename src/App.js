@@ -1,12 +1,11 @@
 import React from "react"
-import Card from "./Card"
+import RoundedImg from "./RoundedImg"
 
 function App() {
     return (
         <div>
-            <Card cardColor="red" height={200} width={300} />
-            <Card cardColor="blue" height={200} width={250} />
-            <Card cardColor="green" />
+            <RoundedImg src="https://picsum.photos/id/237/300/300" borderRadius={} />
+        
         </div>
     )
 }
