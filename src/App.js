@@ -1,26 +1,21 @@
 import React from "react"
-import {withPointlessHOC} from "./withPointlessHOC"
-import {withExtraPropAdded} from "./withExtraPropAdded"
-import {withFavoriteNumber} from './withFavoriteNumber'
+import DataFetcher from "./DataFetcher"
 
-// function App(props) {
-//     console.log(props)
-//     return (
-//         <div>
-//             {props.favoriteNumber}
-//         </div>
-//     )
-// }
-
-import Menu from "./Menu"
-import Favorite from "./Favorite"
 
 function App() {
     return (
         <div>
-           <Menu/>
-            <hr />
-            <Favorite />
+            <DataFetcher url="https://swapi.dev/api/people/1/">
+            {
+               ({data, loading}) => (
+                loading ? 
+                <h1>Loading...</h1> :
+                <p>{JSON.stringify(data)}</p>
+            )
+            }
+
+            </DataFetcher>
+         
         </div>
     )
 }
@@ -40,5 +35,4 @@ function App() {
 // }
 
 
-const pp = withFavoriteNumber(App)
-export default pp
+export default App
