@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.border {
+  border: 1px solid blue;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+main > h1 {
+  text-align: center;
+}
+
+.callout{
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 20px;
+  background-color: #C0FFFE;
+}
