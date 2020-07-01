@@ -18,12 +18,26 @@ import Favorite from "./Favorite"
 function App() {
     return (
         <div>
-            <Menu />
+           <Menu/>
             <hr />
             <Favorite />
         </div>
     )
 }
+
+// function App() {
+//     return (
+//         <div>
+//             <Toggler defaultOnValue={true} render={({on, toggle}) => {
+//                 return (
+//                     <Menu on={on} toggle={toggle}/>
+//                 )
+//             }}/>
+//             <hr />
+//             <Favorite />
+//         </div>
+//     )
+// }
 
 
 const pp = withFavoriteNumber(App)
