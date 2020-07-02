@@ -1,8 +1,7 @@
-import React, {PureComponent} from "react"
+import React from "react"
 import Child from "./Child"
 
-class Parent extends PureComponent {
-    render() {
+export default React.memo(function Parent(props){
         console.log("[ ]   [👩🏼‍⚕️]   [ ]   [ ] rendered")
         return (
             <div>
@@ -11,7 +10,6 @@ class Parent extends PureComponent {
                 <Child />
             </div>
         )
-    }
 }
+)
 
-export default Parent

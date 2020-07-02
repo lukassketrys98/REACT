@@ -1,8 +1,8 @@
-import React, {Component} from "react"
+import React, {memo} from "react"
 import GrandChild from "./GrandChild"
 
-class Child extends Component {
-    render() {
+function Child(props){
+   
         console.log("[ ]   [ ]   [🧒🏻]   [ ] rendered")
         return (
             <div>
@@ -11,7 +11,7 @@ class Child extends Component {
                 <GrandChild />
             </div>
         )
-    }
+    
 }
 
-export default Child
+export default memo(Child)

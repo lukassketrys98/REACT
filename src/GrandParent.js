@@ -1,10 +1,11 @@
-import React, {PureComponent} from "react"
+import React from "react"
 import Parent from "./Parent"
 
-class GrandParent extends PureComponent {   
+function GrandParent(props){   
     
     
-    render() {
+
+    
         console.log("[👴🏼]   [ ]   [ ]   [ ] rendered")
         return (
             <div>
@@ -13,7 +14,11 @@ class GrandParent extends PureComponent {
                 <Parent />
             </div>
         )
-    }
+    
 }
 
-export default GrandParent
+function areEqual(prevProps, nextProps){
+    
+}
+
+export default React.memo(GrandParent, areEqual)
