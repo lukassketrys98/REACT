@@ -1,21 +1,24 @@
 import React from "react"
 import Header from "./Header"
 import Button from "./Button"
-import ThemeContext from './themeContext'
+import UserContext from './userContext'
 
 function App() {
     return (
         <div>
-           <Header />
-           <ThemeContext.Consumer>
+           <Header/>
+            <UserContext.Consumer>
                 {
                     value => (
-                        <Button value = {value} />
-
+                        <main>
+                            <p className="main">
+                                No new Notifications, {value}! 🎉
+                            </p>
+                        </main>
                     )
                 }
-           </ThemeContext.Consumer>
-            <Button value = {"light"} />
+            </UserContext.Consumer>
+           
         </div>
     )
 }

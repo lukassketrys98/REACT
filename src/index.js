@@ -2,16 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import ThemeContext from './themeContext'
+import UserContext from './userContext'
 
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeContext.Provider  value = {"dark"}>
+    <UserContext.Provider  value = {"Lukas"}>
       <App />
 
-    </ThemeContext.Provider>
+    </UserContext.Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
