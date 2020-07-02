@@ -2,16 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import ThemeContext from './themeContext'
+import {ThemeContextProvider} from './themeContext'
 
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeContext.Provider  value = {"dark"}>
+    <ThemeContextProvider>
       <App />
 
-    </ThemeContext.Provider>
+    </ThemeContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
