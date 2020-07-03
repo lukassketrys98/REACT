@@ -2,16 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import {ThemeContextProvider} from './themeContext'
+import {UserContextProvider} from './userContext'
 
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeContextProvider>
+    <UserContextProvider>
       <App />
 
-    </ThemeContextProvider>
+    </UserContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
