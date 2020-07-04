@@ -1,62 +1,39 @@
-import React , {useState}from "react"
-
-
-
-// function App(){
-//     const [count, setCount] = useState(0)
-//     const [answer, setAnswer] = useState('yes')
-
-//     const increment = () => {
-//         setCount(prevCount => prevCount +1)
-//     }
-//     const decrement = () => {
-//         setCount(prevCount => prevCount -1)
-//     }
-//     return (
-//         <div>
-//             <h1>{count}</h1>
-//             <button onClick = {increment}>Increment!</button>
-//             <button onClick = {decrement}>Decrement!</button>
-//         </div>
-//     )
-// }
+import React, {useState, useEffect} from "react"
+import randomcolor from "randomcolor"
 
 function App() {
-    const [inputData, setInputData] = useState({firstName: "", lastName: ""})
-    const [contactsData, setContactsData] = useState([])
-   
-    function handleChange(event) {
-        const {name, value} = event.target
-        setInputData(prevInputData =>({ ...prevInputData, [name]: value }))
-    }
+    const [count, setCount] = useState(0)
+    const [answer, setAnswer] = useState("Yes")
+    const [color, setColor] = useState('')
     
-    function handleSubmit(event) {
-        event.preventDefault()
-        setContactsData(prevContactsData => [...prevContactsData, inputData])
-        
-    }
-  const contacts = contactsData.map(contact => <h2 key = {contact.firstName}>{contact.firstName} {contact.lastName}</h2>)
-    
+ 
+    //only rerenders when the count is changed
+    // useEffect(() => {
+    //     setColor(randomcolor())
+    // }, [count])
+
+    useEffect(() => {
+        setColor(randomcolor())
+       
+    }, [count]) //[count] componentDidUpdate
+
+//only set up , run once
+
+    useEffect(() => {
+        const intervalId = setInterval(()=>{
+            setCount(prevCount => prevCount +1)
+           }, 1000)
+           //componentWillUnmount
+           return () => {
+            clearInterval(intervalId)
+           }
+    }, []) //  [ ]  componentDidMount
+
     return (
-        <>
-            <form onSubmit={handleSubmit}>
-                <input 
-                    placeholder="First Name"
-                    name="firstName" 
-                    value={inputData.firstName}
-                    onChange={handleChange}
-                />
-                <input 
-                    placeholder="Last Name"
-                    name="lastName" 
-                    value={inputData.lastName}
-                    onChange={handleChange}
-                />
-                <br />
-                <button>Add contact</button>
-            </form>
-            {contacts}
-        </>
+        <div>
+            <h1 style = {{color: color}}>{count}</h1>
+         
+        </div>
     )
 }
 
