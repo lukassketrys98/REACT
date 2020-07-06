@@ -1,16 +1,15 @@
-import React, {Component, useState} from "react"
-import useCounter from './useCounter'
+import React from "react"
+import Menu from "./Menu"
+import Favorite from "./Favorite"
 
-function App(){   
-    const {count,increment} = useCounter()
-
-        return (
-            <div>
-                <h1>The count is {count}</h1>
-                <button onClick={increment}>Add 1</button>
-            </div>
-        )
-    
+function App() {
+    return (
+        <div>
+            <Menu />
+            <hr />
+            <Favorite />
+        </div>
+    )
 }
 
 export default App
