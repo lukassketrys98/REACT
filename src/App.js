@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef} from "react"
 import { isCompositeComponent } from "react-dom/test-utils"
 
 
@@ -8,6 +8,7 @@ function App() {
     const [timeRemaining, setTimeRemaining] = useState(STARTING_TIME)
     const [startGame, setStartGame] = useState(false)
     const [wordCount, setWordCount] = useState(0)
+    const textRef = useRef(null)
 
     const handleChange = (event) => {
         const { value } = event.target
@@ -25,6 +26,8 @@ function App() {
         setStartGame(true)
         setTimeRemaining(STARTING_TIME)
         setInputData('')
+        textRef.current.disabled = false
+        textRef.current.focus()
     }
     function endGame() {
         setStartGame(false)
@@ -48,7 +51,7 @@ function App() {
         <div>
             <h1>SPEED TYPING GAME</h1>
             <h1>How fast do you type?</h1>
-            <textarea  disabled = {!startGame? true: false} name="inputData" value={inputData} onChange={handleChange} />
+            <textarea ref = {textRef} disabled = {!startGame? true: false} name="inputData" value={inputData} onChange={handleChange} />
             <h4>Time remaining: {timeRemaining} </h4>
             <button 
             onClick={startClock} 
