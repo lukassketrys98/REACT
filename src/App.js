@@ -1,60 +1,31 @@
-import React, { useState, useEffect } from "react"
-import { isCompositeComponent } from "react-dom/test-utils"
-
+import React, {useState, useRef} from "react"
 
 function App() {
-    const STARTING_TIME = 5
-    const [inputData, setInputData] = useState('')
-    const [timeRemaining, setTimeRemaining] = useState(STARTING_TIME)
-    const [startGame, setStartGame] = useState(false)
-    const [wordCount, setWordCount] = useState(0)
+    const [newTodoValue, setNewTodoValue] = useState("")
+    const [todosList, setTodosList] = useState([])
+    const inputRef = useRef(null)
 
-    const handleChange = (event) => {
-        const { value } = event.target
-        setInputData(value)
-    }
-
-    function countWords(str) {
-        const wordsArr = str.trim().split(" ")
-        const filteredWords = wordsArr.filter(word => word !== "")
-        return filteredWords.length
-      
+    function handleChange(event) {
+        setNewTodoValue(event.target.value)
     }
     
-    function startClock(){
-        setStartGame(true)
-        setTimeRemaining(STARTING_TIME)
-        setInputData('')
+    function addTodo(event) {
+        event.preventDefault()
+        setTodosList(prevTodosList => [...prevTodosList, newTodoValue])
+        setNewTodoValue("")
+        console.log(inputRef)
+        inputRef.current.focus()
     }
-    function endGame() {
-        setStartGame(false)
-        setWordCount(countWords(inputData))
-    }
-
-    useEffect(() => {
-        if (startGame && timeRemaining > 0) {
-            setTimeout(() => {
-                setTimeRemaining(prevTimeRemaining => prevTimeRemaining - 1)
-            }, 1000)
-        }
-        else if (timeRemaining === 0) {
-           endGame()
-        }
-        console.log(startGame)
-
-    }, [timeRemaining, startGame])
-
+    
+    const allTodos = todosList.map(todo => <p key={todo}>{todo}</p>)
+    
     return (
         <div>
-            <h1>SPEED TYPING GAME</h1>
-            <h1>How fast do you type?</h1>
-            <textarea  disabled = {!startGame? true: false} name="inputData" value={inputData} onChange={handleChange} />
-            <h4>Time remaining: {timeRemaining} </h4>
-            <button 
-            onClick={startClock} 
-            disabled = {startGame}
-            >Start Game</button>
-            <h1>Word Count: {wordCount} </h1>
+            <form>
+                <input ref = {inputRef} type="text" name="todo" value={newTodoValue} onChange={handleChange}/>
+                <button onClick={addTodo}>Add todo item</button>
+            </form>
+            {allTodos}
         </div>
     )
 }
