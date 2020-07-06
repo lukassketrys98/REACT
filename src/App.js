@@ -1,51 +1,16 @@
-import React, { useState, useEffect, useRef} from "react"
-import { isCompositeComponent } from "react-dom/test-utils"
-
+import React from "react"
+import useWordGame from './hooks/useWordGame'
 
 function App() {
-    const STARTING_TIME = 5
-    const [inputData, setInputData] = useState('')
-    const [timeRemaining, setTimeRemaining] = useState(STARTING_TIME)
-    const [startGame, setStartGame] = useState(false)
-    const [wordCount, setWordCount] = useState(0)
-    const textRef = useRef(null)
-
-    const handleChange = (event) => {
-        const { value } = event.target
-        setInputData(value)
-    }
-
-    function countWords(str) {
-        const wordsArr = str.trim().split(" ")
-        const filteredWords = wordsArr.filter(word => word !== "")
-        return filteredWords.length
-      
-    }
-    
-    function startClock(){
-        setStartGame(true)
-        setTimeRemaining(STARTING_TIME)
-        setInputData('')
-        textRef.current.disabled = false
-        textRef.current.focus()
-    }
-    function endGame() {
-        setStartGame(false)
-        setWordCount(countWords(inputData))
-    }
-
-    useEffect(() => {
-        if (startGame && timeRemaining > 0) {
-            setTimeout(() => {
-                setTimeRemaining(prevTimeRemaining => prevTimeRemaining - 1)
-            }, 1000)
-        }
-        else if (timeRemaining === 0) {
-           endGame()
-        }
-        console.log(startGame)
-
-    }, [timeRemaining, startGame])
+    const {
+        textRef, 
+        handleChange,
+        startGame, 
+        timeRemaining,
+        startClock,
+        wordCount,
+        inputData
+    } = useWordGame(10)
 
     return (
         <div>
