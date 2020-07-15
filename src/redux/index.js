@@ -1,19 +1,30 @@
-import count from './count'
-import favoriteThings from './favoriteThings'
-import youtubeVideo from './youtubeVideo'
-import user from './user'
+import redux, {createStore} from "redux"
 
-const redux = require("redux")
-const {combineReducers, createStore} = redux
+export function increment() {
+    return {
+        type: "INCREMENT"
+    }
+}
 
-const rootReducer = combineReducers({
-count : count,
-favoriteThings: favoriteThings,
-youtubeVideo: youtubeVideo,
-user: user
-})
+export function decrement() {
+    return {
+        type: "DECREMENT"
+    }
+}
 
-const store = redux.createStore(rootReducer)
+function CounterReducer(count=0,action){
+    switch(action.type) {
+        case "INCREMENT":
+            return count + 1
+        case "DECREMENT":
+            return count - 1
+        default:
+            return count
+    }
+    
+}
+
+const store = createStore(CounterReducer)
 
 store.subscribe(() => {
     console.log(store.getState())
